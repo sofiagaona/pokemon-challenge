@@ -1,3 +1,5 @@
+import { CardsPokemon } from "../src/components/show-pokemons/cards-pokemns";
+
 export default function Home() {
-  return <h1>POKEMON</h1>;
+  return <CardsPokemon />;
 }
