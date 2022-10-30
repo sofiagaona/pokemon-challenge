@@ -18,7 +18,7 @@ export const CardPokemon = ({ name, image }: CardsProps) => {
   return (
     <Card
       sx={{
-        width: { xs: 300, sm: 300, md: 300, lg: 200 },
+        width: { xs: 200, sm: 200, md: 200, lg: 200 },
         marginY: { xs: "5%", sm: "5%", md: "5%", lg: "0%" },
         marginX: "1%",
         opacity: "0.4",

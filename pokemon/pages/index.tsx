@@ -6,14 +6,11 @@ import { useAppSelector, useAppDispatch } from "../src/store/store";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await dispatch(getPokemon(0));
-  //   };
-  //   fetchData();
-  // }, [dispatch]);
-
   const { data, error, page } = useAppSelector(selectPokemon);
+  useEffect(() => {
+    dispatch(getPokemon(page));
+  }, []);
+
   console.log("DATA", data);
   return <LayoutPokemons page={page} data={data} />;
 }
