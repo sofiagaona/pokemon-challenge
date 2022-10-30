@@ -16,7 +16,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "../util/storage";
-//import { createWrapper } from 'next-redux-wrapper';
 
 import { pokemonReducer } from "./slice/pokemon-slice";
 
