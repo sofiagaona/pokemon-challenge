@@ -1,42 +1,24 @@
 import { Button, Pagination, Typography } from "@mui/material";
 import { Box, Stack } from "@mui/system";
-import { useEffect, useState } from "react";
-import { getPokemon, selectPokemon } from "../../store/slice/pokemon-slice";
-import { useAppSelector, useAppDispatch } from "../../store/store";
+import { CardPokemon } from "./card-pokemon";
 
-export const CardsPokemon = () => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(getPokemon(0));
-    };
-    fetchData();
-  }, []);
-
-  const { data, error, page } = useAppSelector(selectPokemon);
-
-  const pokemonPageNext = async () => {
-    await dispatch(getPokemon(page));
-  };
-  const pokemonPagePrevis = async () => {
-    await dispatch(getPokemon(page - 2));
-  };
+type cardsProps = {
+  data?: any;
+};
+export const CardsPokemon = ({ data }: cardsProps) => {
+  console.log("datacardas", data);
   return (
-    <Box>
-      <Typography>Cartas de Pokemos</Typography>
-      {data &&
-        data.results.map((pokemon: any) => {
-          return <li key={pokemon.name}>{pokemon.name}</li>;
+    <Box display="flex" flexWrap="wrap" justifyContent="center" marginY="5%">
+      {data.length != 0 &&
+        data.map((pokemon: any) => {
+          return (
+            <CardPokemon
+              key={pokemon[0]}
+              name={pokemon[0]}
+              image={pokemon[1]}
+            />
+          );
         })}
-      <Button variant="outlined" onClick={pokemonPageNext}>
-        Next
-      </Button>
-      {page > 1 && (
-        <Button variant="outlined" onClick={pokemonPagePrevis}>
-          Previus
-        </Button>
-      )}
     </Box>
   );
 };
