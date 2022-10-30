@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { RootState } from "../store";
 
-export type RateState = {
+export type PokemonState = {
   data: any;
   page: number;
   pending: boolean;
   error: boolean;
 };
 
-const initialState: RateState = {
+const initialState: PokemonState = {
   data: [],
   page: 0,
   pending: false,
@@ -22,8 +22,19 @@ export const getPokemon = createAsyncThunk(
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/?limit=5&offset=${page * 5}`
     );
+    const pokemon = response.data.results.map(async (pok: any) => {
+      const image = await axios.get(pok.url).then((pokInf) => {
+        console.log("pok", pokInf);
+        return pokInf.data.sprites.front_default;
+      });
+      return [pok.name, image];
+    });
 
-    return { pokemon: response.data, page: (page += 1) };
+    const result = await Promise.all(pokemon).then((results) => {
+      return results;
+    });
+
+    return { pokemon: result, page: (page += 1) };
   }
 );
 
