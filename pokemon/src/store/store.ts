@@ -15,13 +15,12 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import storage from "../util/storage";
+import storage from "redux-persist/lib/storage";
 import { pokemonReducer } from "./slice/pokemon-slice";
 import { allGenderReducer } from "./slice/gender-all-slice";
 import { allColorReducer } from "./slice/color-all-slice";
 import { filterAllReducer } from "./slice/filter-gender-color";
 import { pagFilterReducer } from "./slice/pag-filter-slice";
-//import { filterReducer } from "./slice/filter-gender-color";
 
 export const rootReducer = combineReducers({
   pokemon: pokemonReducer,
@@ -49,7 +48,6 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
 const initStore = () => {
   return store;
 };

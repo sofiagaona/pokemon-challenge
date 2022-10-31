@@ -24,10 +24,19 @@ export const getPokemon = createAsyncThunk(
     );
     const pokemon = response.data.results.map(async (pok: any) => {
       const image = await axios.get(pok.url).then((pokInf) => {
-        //console.log("pok", pokInf);
         return pokInf.data.sprites.front_default;
       });
-      return [pok.name, image];
+      const type = await axios.get(pok.url).then((type) => {
+        return type.data.types[0].type.name;
+      });
+      const base_experiencie = await axios.get(pok.url).then((base) => {
+        return base.data.base_experience.toString();
+      });
+      const abiliti = await axios.get(pok.url).then((abiliti) => {
+        return abiliti.data.abilities[0].ability.name;
+      });
+
+      return [pok.name, image, type, base_experiencie, abiliti];
     });
 
     const result = await Promise.all(pokemon).then((results) => {

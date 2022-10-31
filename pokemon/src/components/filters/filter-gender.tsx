@@ -1,4 +1,3 @@
-import { SelectChangeEvent } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { getAllColor } from "../../store/slice/color-all-slice";
@@ -14,7 +13,7 @@ export const FilterGender = () => {
   const { data, error } = useAppSelector(selectAllGender);
   const [gender, setGender] = useState("");
 
-  const handleChange = async (event: SelectChangeEvent) => {
+  const handleChange = async (event: any) => {
     setGender(event.target.value as string);
   };
 

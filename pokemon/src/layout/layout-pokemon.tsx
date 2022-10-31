@@ -7,7 +7,7 @@ import { MenuFilters } from "../components/filters/menu-filters";
 import { CardsPokemon } from "../components/show-pokemons/cards-pokemns";
 import { increment } from "../store/slice/pag-filter-slice";
 import { getPokemon } from "../store/slice/pokemon-slice";
-import { useAppDispatch } from "../store/store";
+import { useAppDispatch, persistor } from "../store/store";
 
 export const LayoutPokemons = () => {
   const dispatch = useAppDispatch();
@@ -36,12 +36,19 @@ export const LayoutPokemons = () => {
             <Typography
               onClick={async () => {
                 await dispatch(getPokemon(0));
-                dispatch(increment([-10, -5]));
+                localStorage.clear();
+                await persistor.purge();
+                dispatch(increment([0, 0, "clear"]));
               }}
               sx={{
                 color: "#EDEDED",
                 opacity: "0.6",
-                fontSize: "1.2rem",
+                fontSize: {
+                  sx: "1 rem",
+                  sm: "1 rem",
+                  md: "1.2rem",
+                  lg: "1.2rem",
+                },
                 "&:hover": { color: "#4e34e1", fontSize: "1.5rem" },
               }}
             >

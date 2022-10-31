@@ -18,8 +18,11 @@ export const pagFilterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state, action) => {
-      console.log("action", action.payload);
-      state.slice = [action.payload[0] + 5, action.payload[1] + 5];
+      state.slice = [
+        action.payload[0] + 5,
+        action.payload[1] + 5,
+        action.payload[2],
+      ];
     },
   },
 });
