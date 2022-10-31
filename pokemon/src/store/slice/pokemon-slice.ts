@@ -24,7 +24,7 @@ export const getPokemon = createAsyncThunk(
     );
     const pokemon = response.data.results.map(async (pok: any) => {
       const image = await axios.get(pok.url).then((pokInf) => {
-        console.log("pok", pokInf);
+        //console.log("pok", pokInf);
         return pokInf.data.sprites.front_default;
       });
       return [pok.name, image];
