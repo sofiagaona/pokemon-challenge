@@ -22,7 +22,6 @@ export default function Home() {
       await dispatch(getPokemon(pageRel));
       await dispatch(getAllGender());
       await dispatch(getAllColor());
-      dispatch(increment([-5, 0]));
     };
     despaches();
   }, [dispatch]);

@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { Button, SelectChangeEvent } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { selectAllColor } from "../../store/slice/color-all-slice";
 import {
   getAllGender,
@@ -21,13 +21,14 @@ export const FilterColor = ({ value }: filterColorProps) => {
   const [disable, setDisable] = useState(true);
   const dispatch = useAppDispatch();
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event: any) => {
     setColor(event.target.value as string);
   };
 
   const searchFilter = async () => {
     await dispatch(getFilter([value, color]));
     dispatch(increment([-5, 0]));
+    localStorage.clear();
   };
   useEffect(() => {
     if (value || color) {
