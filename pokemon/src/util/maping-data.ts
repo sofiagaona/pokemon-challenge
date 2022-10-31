@@ -10,9 +10,12 @@ export const mapingGender = (data: any) => {
 export const filterData = (gender: any, color: any) => {
   if (gender.length != 0 && color.length != 0) {
     var iguales: any = [];
+
     for (var i = 0; i < gender.length; i++) {
       for (var j = 0; j < gender.length; j++) {
-        if (gender[i] == color[j]) iguales.push(gender[i]);
+        if (gender[i] == color[j]) {
+          iguales.push(gender[i]);
+        }
       }
     }
 
