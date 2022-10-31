@@ -20,7 +20,7 @@ export const useStyles = makeStyles(() => ({
     transition: "0.5s",
     transformOrigin: "center",
     "&:hover": {
-      transform: "perspective(800px) rotateY(0deg)",
+      transform: "perspective(800px) rotateY(0deg) scale(1.15)",
       opacity: "1",
     },
   },

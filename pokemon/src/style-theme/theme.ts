@@ -25,10 +25,10 @@ export const theme = responsiveFontSizes(
     },
     palette: {
       background: {
-        default: "#009900", //green
+        default: "#009900",
       },
       primary: {
-        main: "#EDEDED", //purpure
+        main: "#EDEDED",
         contrastText: "#212121",
       },
       secondary: {
