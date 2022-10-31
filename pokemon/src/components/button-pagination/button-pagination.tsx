@@ -1,20 +1,21 @@
-import { Button, IconButton } from "@mui/material";
+import { Button } from "@mui/material";
 import { Box } from "@mui/system";
-import { useAppDispatch } from "../../store/store";
-import { getPokemon } from "../../store/slice/pokemon-slice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { getPokemon, selectPokemon } from "../../store/slice/pokemon-slice";
+import { increment } from "../../store/slice/pag-filter-slice";
 
-type buttonPaginationProps = {
-  page: number;
-};
-
-export const ButtonPagination = ({ page }: buttonPaginationProps) => {
+export const ButtonPagination = () => {
+  const { page } = useAppSelector(selectPokemon);
+  const { slice } = useAppSelector((state) => state.pagFilter);
   const dispatch = useAppDispatch();
 
   const pokemonPageNext = async () => {
     await dispatch(getPokemon(page));
+    dispatch(increment(slice));
   };
   const pokemonPagePrevis = async () => {
     await dispatch(getPokemon(page - 2));
+    dispatch(increment([slice[0] - 10, slice[1] - 10]));
   };
   return (
     <Box

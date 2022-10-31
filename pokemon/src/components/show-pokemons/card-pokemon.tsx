@@ -30,7 +30,7 @@ export const CardPokemon = ({ name, image }: CardsProps) => {
           backgroundColor: "#EDEDED",
           transition: "0.9s",
           opacity: "0.9",
-          transform: "perspective(800px) rotateY(0deg)",
+          transform: "perspective(800px) rotateY(0deg) scale(1.25)",
         },
       }}
     >
@@ -38,7 +38,6 @@ export const CardPokemon = ({ name, image }: CardsProps) => {
         <CardMedia
           component="img"
           className={classes.image}
-          //sx={{ padding: "10px", transition: "1.0s", willChange: "transform" }}
           image={image}
           alt="imagen de pokemon"
         />
